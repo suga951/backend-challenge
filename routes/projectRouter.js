@@ -23,6 +23,11 @@ export const projectRouter = () => {
     validateRequest(projectSchemas.idParamSchema, "params"),
     ProjectController.deleteProject,
   );
+  router.post(
+    "/projects/:id/assign-users",
+    validateRequest(projectSchemas.bulkProjectAssignSchema),
+    ProjectController.assignUsers,
+  );
 
   return router;
 };
