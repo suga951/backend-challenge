@@ -1,6 +1,7 @@
 import getProjectById from "./getProjectById.js";
 import createProject from "./createProject.js";
 import updateProject from "./updateProject.js";
+import deleteProject from "./deleteProject.js";
 
 class ProjectController {
   createProject(req, res) {
@@ -11,6 +12,9 @@ class ProjectController {
   }
   updateProject(req, res) {
     return updateProject(req, res);
+  }
+  deleteProject(req, res) {
+    return deleteProject(req, res);
   }
 }
 export default new ProjectController();

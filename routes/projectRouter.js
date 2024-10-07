@@ -18,6 +18,11 @@ export const projectRouter = () => {
     validateRequest(projectSchemas.projectSchema, "body"),
     ProjectController.updateProject,
   );
+  router.delete(
+    "/projects/:id",
+    validateRequest(projectSchemas.idParamSchema, "params"),
+    ProjectController.deleteProject,
+  );
 
   return router;
 };
