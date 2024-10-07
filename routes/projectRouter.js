@@ -13,6 +13,11 @@ export const projectRouter = () => {
     validateRequest(projectSchemas.projectSchema, "body"),
     ProjectController.createProject,
   );
+  router.put(
+    "/projects/:id",
+    validateRequest(projectSchemas.projectSchema, "body"),
+    ProjectController.updateProject,
+  );
 
   return router;
 };
