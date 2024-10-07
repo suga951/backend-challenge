@@ -8,6 +8,11 @@ export const projectRouter = () => {
   router.param("id", validateRequest(projectSchemas.idParamSchema, "params"));
 
   router.get("/projects/:id", ProjectController.getProjectById);
+  router.post(
+    "/projects",
+    validateRequest(projectSchemas.projectSchema, "body"),
+    ProjectController.createProject,
+  );
 
   return router;
 };
