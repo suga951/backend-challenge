@@ -1,3 +1,71 @@
+/**
+ * @swagger
+ * /projects/{id}/assign-users:
+ *   post:
+ *     summary: Assign one or more users to a project
+ *     description: Assigns multiple users to a project by providing their user IDs.
+ *     tags:
+ *       - Project
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the project to assign users to.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_ids:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *                 description: An array of user IDs to assign to the project.
+ *             example:
+ *               user_ids: [1, 2, 3]
+ *     responses:
+ *       201:
+ *         description: Users assigned successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A success message with user IDs and project ID.
+ *               example:
+ *                 message: "Users, [1, 2, 3], assigned successfully to project: 123"
+ *       400:
+ *         description: Invalid input, such as missing or invalid user IDs array.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *               example:
+ *                 error: "User IDs must be an array of user IDs"
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message.
+ *               example:
+ *                 error: "Something went wrong."
+ */
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
