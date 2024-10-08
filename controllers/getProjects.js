@@ -1,3 +1,104 @@
+/**
+ * @swagger
+ * /projects:
+ *   get:
+ *     summary: Retrieve a list of projects
+ *     description: Fetches a list of projects with pagination and search functionality.
+ *     tags:
+ *       - Project
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         required: false
+ *         description: Page number for pagination (defaults to 1).
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *       - in: query
+ *         name: limit
+ *         required: false
+ *         description: Number of projects to return per page (defaults to 10).
+ *         schema:
+ *           type: integer
+ *           example: 10
+ *       - in: query
+ *         name: search
+ *         required: false
+ *         description: Search term to filter projects by name or description.
+ *         schema:
+ *           type: string
+ *           example: "Project"
+ *     responses:
+ *       200:
+ *         description: A list of projects with pagination info
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                       name:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       status:
+ *                         type: string
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                       users:
+ *                         type: array
+ *                         items:
+ *                           type: object
+ *                           properties:
+ *                             id:
+ *                               type: integer
+ *                             name:
+ *                               type: string
+ *                             email:
+ *                               type: string
+ *                 pagination:
+ *                   type: object
+ *                   properties:
+ *                     total:
+ *                       type: integer
+ *                     pages:
+ *                       type: integer
+ *                     current_page:
+ *                       type: integer
+ *       204:
+ *         description: No data found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *               example:
+ *                 message: "No data found."
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *               example:
+ *                 error: "Something went wrong."
+ */
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
