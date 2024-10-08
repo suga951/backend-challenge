@@ -28,6 +28,11 @@ export const projectRouter = () => {
     validateRequest(projectSchemas.bulkProjectAssignSchema),
     ProjectController.assignUsers,
   );
+  router.get(
+    "/projects",
+    //validateRequest(projectSchemas.querySchema),
+    ProjectController.getProjects,
+  );
 
   return router;
 };

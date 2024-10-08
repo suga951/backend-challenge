@@ -3,8 +3,12 @@ import createProject from "./createProject.js";
 import updateProject from "./updateProject.js";
 import deleteProject from "./deleteProject.js";
 import assignUsers from "./assignUsers.js";
+import getProjects from "./getProjects.js";
 
 class ProjectController {
+  getProjects(req, res) {
+    return getProjects(req, res);
+  }
   createProject(req, res) {
     return createProject(req, res);
   }
